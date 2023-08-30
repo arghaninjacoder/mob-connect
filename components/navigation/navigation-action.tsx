@@ -1,9 +1,9 @@
-'use client';
+'use client'
 
-import { Plus } from 'lucide-react';
-import type { FC } from 'react';
+import { Plus } from 'lucide-react'
+import type { FC } from 'react'
 
-import { ActionTooltip } from '@/components/action-tooltip';
+import { ActionTooltip } from '@/components/action-tooltip'
 
 interface NavigationActionProps {}
 
@@ -21,6 +21,6 @@ const NavigationAction: FC<NavigationActionProps> = ({}) => {
         </button>
       </ActionTooltip>
     </div>
-  );
-};
-export default NavigationAction;
+  )
+}
+export default NavigationAction

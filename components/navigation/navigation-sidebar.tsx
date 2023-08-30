@@ -1,22 +1,22 @@
-import type { FC } from 'react';
-import { redirect } from 'next/navigation';
-import { UserButton } from '@clerk/nextjs';
+import type { FC } from 'react'
+import { redirect } from 'next/navigation'
+import { UserButton } from '@clerk/nextjs'
 
-import { currentProfile } from '@/lib/current-profile';
-import { db } from '@/lib/db';
-import NavigationAction from '@/components/navigation/navigation-action';
-import { Separator } from '@/components/ui/separator';
-import { ScrollArea } from '@/components/ui/scroll-area';
-import NavigationItem from '@/components/navigation/navigation-item';
-import { ModeToggle } from '@/components/mode-toggle';
+import { currentProfile } from '@/lib/current-profile'
+import { db } from '@/lib/db'
+import NavigationAction from '@/components/navigation/navigation-action'
+import { Separator } from '@/components/ui/separator'
+import { ScrollArea } from '@/components/ui/scroll-area'
+import NavigationItem from '@/components/navigation/navigation-item'
+import { ModeToggle } from '@/components/mode-toggle'
 
 interface NavigationSidebarProps {}
 
 const NavigationSidebar: FC<NavigationSidebarProps> = async ({}) => {
-  const profile = await currentProfile();
+  const profile = await currentProfile()
 
   if (!profile) {
-    return redirect('/');
+    return redirect('/')
   }
 
   // all servers that this user is part of
@@ -28,7 +28,7 @@ const NavigationSidebar: FC<NavigationSidebarProps> = async ({}) => {
         },
       },
     },
-  });
+  })
 
   return (
     <div className="space-y-4 flex flex-col items-center h-full text-primary w-full bg-slate-100 dark:bg-[#1e1f22] py-3">
@@ -58,6 +58,6 @@ const NavigationSidebar: FC<NavigationSidebarProps> = async ({}) => {
         />
       </div>
     </div>
-  );
-};
-export default NavigationSidebar;
+  )
+}
+export default NavigationSidebar

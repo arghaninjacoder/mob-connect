@@ -1,10 +1,10 @@
-'use client';
-import { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import * as z from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
-import axios from 'axios';
-import { useRouter } from 'next/navigation';
+'use client'
+import { useEffect, useState } from 'react'
+import { useForm } from 'react-hook-form'
+import * as z from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+import axios from 'axios'
+import { useRouter } from 'next/navigation'
 
 import {
   Dialog,
@@ -13,7 +13,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
+} from '@/components/ui/dialog'
 import {
   Form,
   FormControl,
@@ -21,19 +21,19 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { FileUpload } from '@/components/file-upload';
+} from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
+import { FileUpload } from '@/components/file-upload'
 
 const formSchema = z.object({
   name: z.string().min(1, { message: 'Server name is required' }),
   imageUrl: z.string().min(1, { message: 'Server image is required' }),
-});
+})
 
 export const InitialModal = () => {
-  const router = useRouter();
-  const [isMounted, setIsMounted] = useState(false);
+  const router = useRouter()
+  const [isMounted, setIsMounted] = useState(false)
 
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -41,27 +41,27 @@ export const InitialModal = () => {
       name: '',
       imageUrl: '',
     },
-  });
+  })
 
-  const isLoading = form.formState.isSubmitting;
+  const isLoading = form.formState.isSubmitting
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      await axios.post(`/api/servers`, values);
+      await axios.post(`/api/servers`, values)
 
-      form.reset();
-      router.refresh();
-      window.location.reload();
+      form.reset()
+      router.refresh()
+      window.location.reload()
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
 
   useEffect(() => {
-    setIsMounted(true);
-  }, []);
+    setIsMounted(true)
+  }, [])
 
-  if (!isMounted) return null;
+  if (!isMounted) return null
 
   return (
     <Dialog open>
@@ -127,5 +127,5 @@ export const InitialModal = () => {
         </Form>
       </DialogContent>
     </Dialog>
-  );
-};
+  )
+}

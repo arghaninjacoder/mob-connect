@@ -1,9 +1,9 @@
-'use client';
-import { useForm } from 'react-hook-form';
-import * as z from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
-import axios from 'axios';
-import { useRouter } from 'next/navigation';
+'use client'
+import { useForm } from 'react-hook-form'
+import * as z from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+import axios from 'axios'
+import { useRouter } from 'next/navigation'
 
 import {
   Dialog,
@@ -12,7 +12,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
+} from '@/components/ui/dialog'
 import {
   Form,
   FormControl,
@@ -20,20 +20,20 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { FileUpload } from '@/components/file-upload';
-import { useModal } from '@/hooks/use-modal-store';
+} from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
+import { FileUpload } from '@/components/file-upload'
+import { useModal } from '@/hooks/use-modal-store'
 
 const formSchema = z.object({
   name: z.string().min(1, { message: 'Server name is required' }),
   imageUrl: z.string().min(1, { message: 'Server image is required' }),
-});
+})
 
 export const CreateServerModal = () => {
-  const { isOpen, onClose, type } = useModal();
-  const router = useRouter();
+  const { isOpen, onClose, type } = useModal()
+  const router = useRouter()
 
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -41,20 +41,20 @@ export const CreateServerModal = () => {
       name: '',
       imageUrl: '',
     },
-  });
+  })
 
-  const isLoading = form.formState.isSubmitting;
+  const isLoading = form.formState.isSubmitting
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      await axios.post(`/api/servers`, values);
+      await axios.post(`/api/servers`, values)
 
-      form.reset();
-      router.refresh();
+      form.reset()
+      router.refresh()
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
 
   return (
     <Dialog open>
@@ -120,5 +120,5 @@ export const CreateServerModal = () => {
         </Form>
       </DialogContent>
     </Dialog>
-  );
-};
+  )
+}

@@ -1,12 +1,12 @@
-import { create } from 'zustand';
+import { create } from 'zustand'
 
-export type ModalType = 'createServer';
+export type ModalType = 'createServer'
 
 interface ModalStore {
-  type: ModalType | null;
-  isOpen: boolean;
-  onOpen: (type: ModalType) => void; // which type of modal you want to open
-  onClose: () => void;
+  type: ModalType | null
+  isOpen: boolean
+  onOpen: (type: ModalType) => void // which type of modal you want to open
+  onClose: () => void
 }
 
 export const useModal = create<ModalStore>(set => ({
@@ -14,4 +14,4 @@ export const useModal = create<ModalStore>(set => ({
   isOpen: false,
   onOpen: type => set({ isOpen: true, type }),
   onClose: () => set({ type: null, isOpen: false }),
-}));
+}))

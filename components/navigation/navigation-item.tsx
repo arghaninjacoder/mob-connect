@@ -1,25 +1,25 @@
-'use client';
+'use client'
 
-import Image from 'next/image';
-import { useParams, useRouter } from 'next/navigation';
-import type { FC } from 'react';
+import Image from 'next/image'
+import { useParams, useRouter } from 'next/navigation'
+import type { FC } from 'react'
 
-import { cn } from '@/lib/utils';
-import { ActionTooltip } from '@/components/action-tooltip';
+import { cn } from '@/lib/utils'
+import { ActionTooltip } from '@/components/action-tooltip'
 
 interface NavigationItemProps {
-  id: string;
-  imageUrl: string;
-  name: string;
+  id: string
+  imageUrl: string
+  name: string
 }
 
 const NavigationItem: FC<NavigationItemProps> = ({ id, imageUrl, name }) => {
-  const params = useParams();
-  const router = useRouter();
+  const params = useParams()
+  const router = useRouter()
 
   const onClick = () => {
-    router.push(`/servers/${id}`);
-  };
+    router.push(`/servers/${id}`)
+  }
   return (
     <ActionTooltip side="right" align="center" label={name}>
       <button onClick={onClick} className="group relative flex items-center">
@@ -42,6 +42,6 @@ const NavigationItem: FC<NavigationItemProps> = ({ id, imageUrl, name }) => {
         </div>
       </button>
     </ActionTooltip>
-  );
-};
-export default NavigationItem;
+  )
+}
+export default NavigationItem
