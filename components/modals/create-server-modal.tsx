@@ -35,6 +35,9 @@ export const CreateServerModal = () => {
   const { isOpen, onClose, type } = useModal()
   const router = useRouter()
 
+  // continuously track open status of create server modal
+  const isModalOpen = isOpen && type === 'createServer'
+
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -51,13 +54,19 @@ export const CreateServerModal = () => {
 
       form.reset()
       router.refresh()
+      onClose()
     } catch (error) {
       console.log(error)
     }
   }
 
+  const handleClose = () => {
+    form.reset()
+    onClose()
+  }
+
   return (
-    <Dialog open>
+    <Dialog open={isModalOpen} onOpenChange={handleClose}>
       <DialogContent className="bg-white text-black p-0 overflow-hidden">
         <DialogHeader className="pt-8 px-6">
           <DialogTitle className="text-2xl text-center font-bold">
